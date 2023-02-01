@@ -25,3 +25,9 @@ lib_managed
 src_managed/
 project/project
 project/target
+.bsp/
+
+# Scala-IDE specific files
+.bloop/
+.metals/
+.vscode/

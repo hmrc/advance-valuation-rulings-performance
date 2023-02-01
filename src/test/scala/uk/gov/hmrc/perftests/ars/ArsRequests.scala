@@ -16,36 +16,33 @@
 
 package uk.gov.hmrc.perftests.ars
 
-import uk.gov.hmrc.performance.conf.ServicesConfiguration
-import uk.gov.hmrc.performance.simulation.PerformanceTestRunner
 import uk.gov.hmrc.perftests.ars.Requests._
 
 trait ArsRequests {
-  self: PerformanceTestRunner with ServicesConfiguration =>
 
-   val baseUrl: String = baseUrlFor("ars-frontend")
-
-  val payload = Map(
+  private val baseUrl  = Configuration.arsUrl
+  private val dpayload = Map(
     "value[0]" -> "option1",
     "value[1]" -> "option2",
     "value[2]" -> "option3",
     "value[3]" -> "option4",
     "value[4]" -> "option5",
-    "value[5]" -> "option6",
-    "value[6]" -> "option7",
-    "value[7]" -> "option8",
+    "value[5]" -> "option6"
   )
 
-  setup("initial-journey", "test ") withRequests(
-    getPage("account home",true, s"$baseUrl/advance-valuation-ruling/accountHome"),
-    getPage("starter checklist",true, s"$baseUrl/advance-valuation-ruling/requiredInformation?csrfToken="+"${csrfToken}"),
-    postPage("starter checklist",s"$baseUrl/advance-valuation-ruling/requiredInformation", s"$baseUrl/advance-valuation-ruling/importGoods", payload),
-    getPage("About the goods", true,s"$baseUrl/advance-valuation-ruling/importGoods")
-
-    )
-  setup(" ars-api", "verify a Performance  test on Staging ")
-    .withRequests(
-      getPage("Staging",s"$baseUrl/auth-login-stub/gg-sign-in?continue=%2Fadvance-valuation-ruling%2FaccountHome")
-    )
-
+  def navigateToAaccountHome                                          =
+    getPage("account home", true, s"$baseUrl/advance-valuation-ruling/accountHome")
+  def navigateToStarterChecklist                                      = getPage(
+    "starter checklist",
+    true,
+    s"$baseUrl/advance-valuation-ruling/requiredInformation?csrfToken=" + "${csrfToken}"
+  )
+  def submitStarterChecklist(payload: Map[String, String] = dpayload) = postPage(
+    "starter checklist",
+    s"$baseUrl/advance-valuation-ruling/requiredInformation",
+    s"$baseUrl/advance-valuation-ruling/importGoods",
+    payload
+  )
+  def navigateToAboutTheGoods                                         =
+    getPage("About the goods", true, s"$baseUrl/advance-valuation-ruling/importGoods")
 }
