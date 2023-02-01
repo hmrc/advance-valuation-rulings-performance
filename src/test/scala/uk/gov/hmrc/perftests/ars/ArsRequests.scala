@@ -23,7 +23,7 @@ import uk.gov.hmrc.perftests.ars.Requests._
 trait ArsRequests {
   self: PerformanceTestRunner with ServicesConfiguration =>
 
-  private val baseUrl: String = baseUrlFor("ars-frontend")
+   val baseUrl: String = baseUrlFor("ars-frontend")
 
   val payload = Map(
     "value[0]" -> "option1",
@@ -42,6 +42,10 @@ trait ArsRequests {
     postPage("starter checklist",s"$baseUrl/advance-valuation-ruling/requiredInformation", s"$baseUrl/advance-valuation-ruling/importGoods", payload),
     getPage("About the goods", true,s"$baseUrl/advance-valuation-ruling/importGoods")
 
+    )
+  setup(" ars-api", "verify a Performance  test on Staging ")
+    .withRequests(
+      getPage("Staging",s"$baseUrl/auth-login-stub/gg-sign-in?continue=%2Fadvance-valuation-ruling%2FaccountHome")
     )
 
 }

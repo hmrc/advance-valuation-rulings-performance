@@ -22,15 +22,5 @@ import uk.gov.hmrc.performance.simulation.PerformanceTestRunner
 class ArsSimulation extends PerformanceTestRunner
   with ServicesConfiguration
   with ArsRequests {
-
-  //   Override to enable follow redirects
-  //  override val httpProtocol = http
-  //    .acceptHeader("image/png,image/*;q=0.8,*/*;q=0.5")
-  //    .acceptEncodingHeader("gzip, deflate")
-  //    .acceptLanguageHeader("en-gb,en;q=0.5")
-  //    .connectionHeader("close")
-  //    .userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:25.0) Gecko/20100101 Firefox/25.0")
-  //    .header("True-Client-IP", "${random}")
-
   runSimulation()
 }
