@@ -26,7 +26,7 @@ class ArsSimulation extends PerformanceTestRunner with ServicesConfiguration wit
     "Log in to auth"
   ).withRequests(
     navigateToAuthWizard,
-    login()
+    submitAuthWizard
   )
 
   setup("initial-journey", "test ")

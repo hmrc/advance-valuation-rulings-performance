@@ -22,7 +22,7 @@ import io.gatling.http.request.builder.HttpRequestBuilder
 
 object AuthRequests {
   val authWizardUrl: String        = s"${Configuration.authUrl}/auth-login-stub/gg-sign-in"
-  val redirectionUrl: String       = "/advance-valuation-ruling/accountHome"
+  val redirectionUrl: String       = s"${Configuration.arsUrl}/advance-valuation-ruling/accountHome"
   val authWizardSessionUrl: String = s"${Configuration.authUrl}/auth-login-stub/session"
 
   val navigateToAuthWizard: HttpRequestBuilder =
@@ -35,7 +35,7 @@ object AuthRequests {
       .get(authWizardSessionUrl)
       .check(status.is(200))
 
-  def login(): HttpRequestBuilder =
+  def submitAuthWizard: HttpRequestBuilder =
     http("Log in to auth")
       .post(authWizardUrl)
       .formParam("redirectionUrl", redirectionUrl)
@@ -44,5 +44,5 @@ object AuthRequests {
       .formParam("confidenceLevel", "50")
       .formParam("affinityGroup", "Individual")
       .check(status.is(303))
-      .check(header("Location").is(authWizardSessionUrl))
+      .check(header("Location").is(redirectionUrl))
 }
