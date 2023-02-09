@@ -20,6 +20,9 @@ Start `PLATFORM_EXAMPLE_UI_TESTS` services as follows:
 sm --start PLATFORM_EXAMPLE_UI_TESTS -r --wait 100
 ```
 
+
+### User volume requirement 
+9000-12000 per year
 ### Logging
 
 The default log level for all HTTP requests is set to `WARN`. Configure [logback.xml](src/test/resources/logback.xml) to update this if required.
@@ -43,6 +46,7 @@ sbt -DrunLocal=true gatling:test
 ```
 
 Run smoke test (staging) as follows:
+sbt -DrunLocal=false gatling:test
 
 ```bash
 sbt -Dperftest.runSmokeTest=true -DrunLocal=false gatling:test
@@ -60,6 +64,9 @@ Format `*.sbt` and `project/*.scala` files as follows:
 
 ```bash
 sbt scalafmtSbt
+
+
+
 ```
 
 Format all project files as follows:
