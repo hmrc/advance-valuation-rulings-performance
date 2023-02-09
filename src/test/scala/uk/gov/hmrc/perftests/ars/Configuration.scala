@@ -17,27 +17,8 @@
 package uk.gov.hmrc.perftests.ars
 
 import uk.gov.hmrc.performance.conf.ServicesConfiguration
-import uk.gov.hmrc.performance.simulation.PerformanceTestRunner
-import uk.gov.hmrc.perftests.ars.AuthRequests._
 
-class ArsSimulation extends PerformanceTestRunner with ServicesConfiguration with ArsRequests {
-  setup(
-    "registration-login",
-    "Log in to auth"
-  ).withRequests(
-    navigateToAuthWizard,
-    submitAuthWizard
-  )
-
-  setup("initial-journey", "test ")
-    .withActions(
-      navigateToAaccountHome,
-      navigateToStarterChecklist,
-      submitStarterChecklist(allTicked = true),
-      navigateToPlanningToImportGoods,
-      submitPlanningToImportGoods(true),
-      navigateToPublicInformationNotice
-    )
-
-  runSimulation()
+object Configuration extends ServicesConfiguration {
+  val authUrl: String = baseUrlFor("auth-login-stub")
+  val arsUrl: String  = baseUrlFor("ars-frontend")
 }
