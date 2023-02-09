@@ -32,7 +32,11 @@ class ArsSimulation extends PerformanceTestRunner with ServicesConfiguration wit
   setup("initial-journey", "test ")
     .withActions(
       navigateToAaccountHome,
-      navigateToStarterChecklist
+      navigateToStarterChecklist,
+      submitStarterChecklist(allTicked = true),
+      navigateToPlanningToImportGoods,
+      submitPlanningToImportGoods(true),
+      navigateToPublicInformationNotice
     )
 
   runSimulation()
