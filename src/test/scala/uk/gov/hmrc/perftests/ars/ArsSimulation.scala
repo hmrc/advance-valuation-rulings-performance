@@ -32,11 +32,61 @@ class ArsSimulation extends PerformanceTestRunner with ServicesConfiguration wit
   setup("initial-journey", "test ")
     .withActions(
       navigateToAaccountHome,
+
       navigateToStarterChecklist,
+
       submitStarterChecklist(allTicked = true),
+
       navigateToPlanningToImportGoods,
       submitPlanningToImportGoods(true),
-      navigateToPublicInformationNotice
+
+      navigateToPublicInformationNotice,
+
+      navigateToContactAboutYourApp,
+
+      navigateToCheckRegisteredDetails(answer=true),
+
+      navigateToProvideContactDetails(true),
+      submitProvideContactDetails(true),
+
+      navigateToMethodNamePage(true),
+      selectMethodNamePage(true),
+
+      navigateWhyNotSelectedMethod1Page,
+      enterReasonNotSelectedMethod1(true),
+
+      naviagteHaveYouUsedMethodInLast90daysPage,
+      submitYouUsedMethodInPastPage(true),
+
+      navigateNameOfTheGoodsPage,
+      enterNameofTheGoods(true),
+
+      navigateFoundCommodityCodePage,
+      submitFoundCommodityCode(true),
+
+      navigateCommodityCodePage,
+      enterCommodityCode(true),
+
+      navigateWhichCountryGoodsComingFromPage,
+      enterCountryNameinGoodComingPage(true),
+
+      naviagteToShiipedFromOrginCountryToUK,
+      submitToShippedFromOrginCountryToUK(true),
+
+      navigateDescribeTheGoodsPage,
+      enterTheDescriptionofTheGoods(true),
+
+      navigateTheGoodsMadePage,
+      enterTheGoodsMadeInfo(true),
+
+      navigateToConfidentialInfoPage,
+      submitYesInConfidentialInfoPage(true),
+
+      navigateToEnterConfidentialInfoPage,
+      enterTheConfidentialInfo(true),
+
+      navigateToUploadSupportingDocsPage,
+      submitNoInUploadSupportingDocsPage(false),
     )
 
   runSimulation()
